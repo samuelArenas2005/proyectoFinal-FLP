@@ -1,0 +1,11 @@
+#funcion para determinar si un numero es par
+var x = 4;
+var y = lambda(a) => {
+  a = 3
+};
+
+'y(x)
+print(x)
+
+
+return
