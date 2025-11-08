@@ -1,11 +1,6 @@
-var x = object persona = {
-  nombre : "Juan",
-  edad : 30
-};
-
+var x = [10, -10, lambda(x) => {x}, {"a": 5}, [2,3,4]];
+for i in x {
+  print(i)
+}
 print(x)
-
 return
-
-
-
