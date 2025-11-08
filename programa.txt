@@ -1,11 +1,11 @@
-var x = 0;
+var x = object persona = {
+  nombre : "Juan",
+  edad : 30
+};
 
-while (x < 10) {
-   x = (x+1)
-  print( x )
-}
-
+print(x)
 
 return
+
 
 
