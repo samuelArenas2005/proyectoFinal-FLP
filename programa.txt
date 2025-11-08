@@ -1,6 +1,3 @@
-var x = [10, -10, lambda(x) => {x}, {"a": 5}, [2,3,4]];
-for i in x {
-  print(i)
-}
-print(x)
+var x = [{"a" : {"b" : [{"c" : "hola"}, lambda(x) => {x}]}}];
+print(x.[0].["a"].["b"].[1])
 return
