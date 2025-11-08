@@ -1,4 +1,3 @@
 var x = [{"a": "hola"},[4,2]];
-x.[0].["b"] = 10000
-print(x)
+print(x.["a"])
 return
