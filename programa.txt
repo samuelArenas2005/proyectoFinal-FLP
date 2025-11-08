@@ -1,14 +1,4 @@
-var x = {1:"hola", 2:{3:"mundo"}};
-
-set(x,3,"hola2")
-var w = get(x,3);
-
-print(w)
-
-print(keys(x))
-print(values(x))
-print(diccionario?(x))
-
+var x = [[2,3],[4,2]];
+x.[1].[1] = 100
+print(x)
 return
-
-
