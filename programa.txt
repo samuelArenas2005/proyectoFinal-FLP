@@ -1,43 +1,10 @@
-var calculadora = lambda(f,a,b) => { 
-  'f(a,b)
-};
+var x = 0;
 
-var suma = lambda(a,b) => { 
-  (a+b)
-};
-
-var resta = lambda(a,b) => { 
-  (a -b)
-};
-
-var mult = lambda(a,b) => { 
-  (a*b)
-};
-
-print("Calculadora")
-print("Op1:Suma")
-print("Op2:Resta")
-print("Op3:Multiplicacion")
-
-var x = input("Ingrese_una_opcion:");
-var a = input("Ingrese_un_numero:");
-var b = input("Ingrese_otro_numero:");
-x = toInt(x)
-a = toInt(a)
-b = toInt(b)
-
-if(x == 1){
-  print("Estas_en_suma:")
-  print('calculadora(suma,a,b))
-}else if (x == 2){
-  print("Estas_en_resta:")
-  print('calculadora(resta,a,b))
-}else if (x == 3){
-  print("Estas_en_multiplicacion:")
-  print('calculadora(mult,a,b))
-}else{
-  print("Opcion_no_valida")
+while (x < 10) {
+   x = (x+1)
+  print( x )
 }
+
 
 return
 
