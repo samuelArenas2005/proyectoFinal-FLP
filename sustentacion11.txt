@@ -1,0 +1,32 @@
+#Punto 1, ciclo que itera con for y realiza el reciproco de cada elemento de una lista, creando una lista nueva con los reciprocos
+var rango = [1,2,3,4,5], acc = [];
+
+for i in rango {
+  acc = (acc append [(1 / i)])
+}
+print("Iteracion_con_for_haciendo_reciprocos")
+print()
+print(acc)
+print()
+
+#Punto 2, ciclo que itera con while, devolviendo si la iteracion k es par o impar con la funcion esPar?
+var esPar? = lambda(n) => {
+  if ((n % 2) == 0) {
+    true
+  }else{
+    false
+  }
+};
+
+var k = 1;
+
+print("Iteracion_con_while_usando_esPar?")
+print()
+
+while (k <= 5) {
+  print("iteracion:", k, "Valor_esPar?:", 'esPar?(k))
+  k = ++(k)
+}
+
+
+return

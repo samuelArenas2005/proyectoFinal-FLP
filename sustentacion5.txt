@@ -1,0 +1,33 @@
+
+print("Operaciones_con_numeros_enteros")
+print()
+print((10 + 5))
+print((8 - 1))
+print((20 / 4))
+print((15 * -4))
+print((1234 % 34))
+print(++(10)) #add1
+print(--(-10)) #sub1
+print()
+
+print("Operaciones_con_numeros_flotantes")
+print()
+print((10 + 5))
+print((9.19 - 0.12))
+print((20.678 / -1000))
+print((157.43 * 3.25))
+print(++(12.332)) #add1
+print(--(-9.9570)) #sub1
+print()
+
+
+print("Operaciones_con_numeros_complejos")
+print()
+print((complex(43, 12) + complex(12,2)))
+print((complex(11.1, -10.19) - complex(0, 10000)))
+print((complex(1000, 0) * complex(12, 14)))
+print((complex(8, 0) / complex(2, 0)))
+
+return
+
+
