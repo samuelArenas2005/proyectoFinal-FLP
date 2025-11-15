@@ -29,12 +29,13 @@ print(registro)
 print("valores:", registro.["valores"])
 print("factoriales:", registro.["factoriales"])
 
+
 var map = lambda(f, L) => {
-    var resultado = [];
-    for i in L {
-        resultado = (resultado append ['f(i)])
+    if empty?(L){
+        L
+    }else{
+        (['f(head(L))] append 'map(f,tail(L)))
     }
-    resultado
 };
 
 print("Map_multiplicar_por_2_sobre_", 'map(lambda(x) => {(x * 2)}, [1,2,3,4,5]))

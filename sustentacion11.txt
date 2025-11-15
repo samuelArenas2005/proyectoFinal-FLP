@@ -1,11 +1,18 @@
 #Punto 1, ciclo que itera con for y realiza el reciproco de cada elemento de una lista, creando una lista nueva con los reciprocos
-var rango = [1,2,3,4,5], acc = [];
+var rango = [1,2,3,4,5], acc = [], reciproco = null;
 
-for i in rango {
-  acc = (acc append [(1 / i)])
-}
 print("Iteracion_con_for_haciendo_reciprocos")
 print()
+
+
+for i in rango {
+  reciproco = (1 / i)
+  print("Valor:", i, "Reciproco:", reciproco)
+  acc = (acc append [reciproco])
+}
+
+print()
+print("Resultado_de_la_lista_con_los_reciprocos")
 print(acc)
 print()
 
