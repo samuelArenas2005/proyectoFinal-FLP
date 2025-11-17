@@ -1125,7 +1125,7 @@
 ;;  Esta sección ya fue implementada en la gramática (producción rec-exp)
 ;;  y en la función eval-expresion (manejo del caso rec-exp).
 ;;==========================================================================================
-;(interpretador)
+
 ;;======================================================================
 ;; EJECUTOR DE ARCHIVO
 ;;======================================================================
