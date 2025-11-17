@@ -1,9 +1,0 @@
-var f = lambda(x, y) => {
-  for i in range(10) {
-    print("estos_son_los_valores", x, y)
-  }
-  100
-};
-
-'f(10,12)
-return
