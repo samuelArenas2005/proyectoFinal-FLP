@@ -1,0 +1,37 @@
+object vehiculo = { 
+    Marca : "Honda", 
+    Modelo : 2001, 
+    setMarca : lambda(self,marca) => { self.["Marca"] = marca },
+    setModelo : lambda(self,modelo) => { self.["Modelo"] = modelo },
+    getMarca : lambda(self) => {self.["Marca"]},
+    getModelo : lambda(self) => {self.["Modelo"]}
+}
+object Moto = clone(vehiculo)
+Moto.["Cilindrada"] = null
+Moto.["setCilindrada"]  = lambda(self,cilindrada) => { self.["Cilindrada"]= cilindrada}
+Moto.["getCilindrada"]  = lambda(self) => { self.["Cilindrada"]}
+
+
+
+object Moto1 = clone(Moto)
+object Moto2 = clone(Moto)
+object Moto3 = clone(Moto)
+
+'Moto1.["setCilindrada"](Moto1,100)
+'Moto2.["setCilindrada"](Moto2,200) 
+'Moto3.["setCilindrada"](Moto3,300)
+
+print("INFO:")
+
+print()
+print("Moto1")
+print('Moto1.["getMarca"](Moto1),'Moto1.["getModelo"](Moto1),'Moto1.["getCilindrada"](Moto1))
+
+print()
+print("Moto2")
+print('Moto2.["getMarca"](Moto2),'Moto2.["getModelo"](Moto1),'Moto2.["getCilindrada"](Moto2))
+
+print()
+print("Moto3")
+print('Moto3.["getMarca"](Moto3),'Moto3.["getModelo"](Moto1),'Moto3.["getCilindrada"](Moto3))
+return

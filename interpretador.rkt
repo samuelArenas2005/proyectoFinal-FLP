@@ -1132,7 +1132,7 @@
 
 ;; 1. Lee el contenido de tu archivo de programa como un solo string
 (define programa-como-string
- (file->string "pruebas.txt"))
+ (file->string "sustentacion12.txt"))
 
 ;; 2. Usa tu parser existente para convertir el string en un AST
 ;;    (Esto asume que tu parser se llama 'scan&parse')
