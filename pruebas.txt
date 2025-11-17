@@ -1,0 +1,16 @@
+var x = [1,2,3];
+var y = 10;
+var z = { "k" : "hola"};
+
+var F1 = lambda(a) => {a = (a append [4])};
+'F1(x)
+print(x)
+
+var F2 = lambda(b) => {b=11};
+'F2(y)
+print(y)
+
+var F3 = lambda(c) => { set(c,"k","adios") };
+'F3(z)
+print(z)
+return

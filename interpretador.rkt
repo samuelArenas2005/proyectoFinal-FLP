@@ -266,8 +266,37 @@
   (lambda (pgm)
     (cases programa pgm
       (un-programa (body)
-          (eval-secuencia body (init-env))))))
+          (aplanar-valor (eval-secuencia body (init-env)))))))
 
+;; Función para desempaquetar los targets recursivamente
+(define aplanar-valor
+  (lambda (val)
+    (cond
+      ;; 1. Si es un Target (directo o indirecto), lo abrimos
+      [(target? val)
+       (cases target val
+         (direct-target (v) (aplanar-valor v))
+         (indirect-target (ref) (aplanar-valor (primitive-deref ref))))]
+
+      ;; 2. Si es una Lista (Vector), aplanamos sus elementos
+      [(vector? val)
+       (list->vector (map aplanar-valor (vector->list val)))]
+
+      ;; 3. Si es un Diccionario, aplanamos TANTO LLAVES COMO VALORES
+      [(dictionary? val)
+       (cases dictionary val
+         (dict (keys values)
+               (dict 
+                ;; --- AQUÍ ESTÁ EL CAMBIO ---
+                ;; Antes pasábamos 'keys' directo, ahora le aplicamos map aplanar-valor
+                (list->vector (map aplanar-valor (vector->list keys)))
+                
+                ;; Los valores ya los estábamos aplanando
+                (list->vector (map aplanar-valor (vector->list values)))
+                )))]
+
+      ;; 4. Si es un primitivo, lo dejamos igual
+      [else val])))
 (define eval-secuencia
   (lambda (exps ambi)
     (cond
@@ -369,7 +398,8 @@
                     (obj-dic-vacio (create-dictionary '() '()))
                     (nuevo-ambi (ambiente-extendido
                                  (list obj-id)
-                                 (list obj-dic-vacio)
+                                 ;; Envolver el objeto en direct-target
+                                 (list (direct-target obj-dic-vacio)) 
                                  '(#t)
                                  ambi))
                     (obj-ref (buscar-variable-ref obj-id nuevo-ambi))
@@ -387,8 +417,9 @@
   (lambda ()
     (ambiente-extendido
       '(void a)
-      '(null 1)
-      '(#f #f)
+      ;; OJO: Los valores iniciales deben ser targets directos
+      (list (direct-target 'void) (direct-target 1)) 
+      '(#f #f) ; Mutabilidad
       (ambiente-vacio))))
 
 
@@ -516,7 +547,10 @@
         'void
         (begin
           (let* ((val-actual (car items-lista))
-                 (loop-ambi (ambiente-extendido (list id) (list val-actual) '(#t) ambi)))
+                 ;; IMPORTANTE: Envolver val-actual en direct-target
+                 (loop-ambi (ambiente-extendido (list id) 
+                                                (list (direct-target val-actual)) 
+                                                '(#t) ambi)))
             
             (eval-secuencia body-exps loop-ambi))
           
@@ -604,10 +638,13 @@
         (let ((arg (get-n-arg exps 'toInt 1)))
           (string->number (symbol->string arg 1))))
           
-      (primitiva-print ()(begin (for-each 
+      (primitiva-print ()
+        (begin 
+          (for-each 
             (lambda (arg)
-              (display (to-external-form arg))    
-              (display " "))    
+              ;; APLICAR aplanar-valor AQUÍ antes de pasar a to-external-form
+              (display (to-external-form (aplanar-valor arg)))     
+              (display " "))     
             exps)
           (newline)
           'null))
@@ -787,7 +824,26 @@
 
 (define eval-rand
   (lambda (rand env)
-    (eval-expresion rand env)))
+    (cases expresion rand
+      ;; Si es una variable simple (id-exp con id-simple-tail)
+      (id-exp (id tail)
+              (cases id-tail tail
+                (id-simple-tail ()
+                   ;; PASO POR REFERENCIA:
+                   ;; Obtenemos la referencia de la variable en el ambiente
+                   (let ((ref (buscar-variable-ref id env)))
+                     (cases target (primitive-deref ref)
+                       ;; Si la variable ya tiene un valor, apuntamos a ella
+                       (direct-target (val) (indirect-target ref))
+                       ;; Si la variable ya es una referencia, mantenemos la cadena (aplanamos)
+                       (indirect-target (ref2) (indirect-target ref2)))))
+                
+                ;; Si es un acceso a arreglo/diccionario u otra cosa, es valor directo
+                (else (direct-target (eval-expresion rand env)))))
+      
+      ;; Cualquier otra expresión (números, sumas, etc.) es un valor directo
+      (else
+       (direct-target (eval-expresion rand env))))))
 
 (define apply-procedure
   (lambda (proc args)
@@ -1028,6 +1084,12 @@
 ;; REFERENCIAS
 ;;------------------------------------------------------------------------------------------
 
+;; Definición de Blancos (Targets)
+(define-datatype target target?
+  (direct-target (expval schemevalue?))    ; El valor vive aquí
+  (indirect-target (ref reference?)))      ; El valor vive en 'ref'
+
+
 (define-datatype reference reference?
   (a-ref (position integer?)(vec vector?))
   (a-ref2 (key schemevalue?)(dic dictionary?))
@@ -1044,7 +1106,13 @@
 
 (define deref
   (lambda (ref)
-    (primitive-deref ref)))
+    (cases target (primitive-deref ref)
+      (direct-target (val) val)
+      (indirect-target (ref1)
+                       (cases target (primitive-deref ref1)
+                         (direct-target (val) val)
+                         (indirect-target (ref2)
+                                          (eopl:error 'deref "Referencia ilegal o ciclo detectado: ~s" ref1)))))))
 
 (define primitive-deref
   (lambda (ref)
@@ -1055,7 +1123,14 @@
 
 (define setref!
   (lambda (ref val)
-    (primitive-setref! ref val)))
+    (let ((target-actual (primitive-deref ref)))
+      (cases target target-actual
+        ;; Si es directo, sobrescribimos el valor aquí mismo
+        (direct-target (v)
+                       (primitive-setref! ref (direct-target val)))
+        ;; Si es indirecto, seguimos la referencia y escribimos allá
+        (indirect-target (ref-real)
+                         (primitive-setref! ref-real (direct-target val)))))))
 
 (define primitive-setref!
   (lambda (ref val)
@@ -1132,7 +1207,7 @@
 
 ;; 1. Lee el contenido de tu archivo de programa como un solo string
 (define programa-como-string
- (file->string "sustentacion12.txt"))
+ (file->string "pruebas.txt"))
 
 ;; 2. Usa tu parser existente para convertir el string en un AST
 ;;    (Esto asume que tu parser se llama 'scan&parse')
