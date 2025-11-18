@@ -1,0 +1,38 @@
+var x = [1,2,3];
+var y = 10;
+var z = { "k" : "hola"};
+var w = "Bienvenido";
+
+var F1 = lambda(a) => {a.[2] = 4};
+'F1(x)
+
+print("Cambia_la_posicion_index_de_X")
+print(x)
+
+print()
+
+var F2 = lambda(b) => {b=11};
+'F2(y)
+print("No_cambia_Y")
+print(y)
+
+print()
+
+var F3 = lambda(c) => {c.["k"] = "adios" };
+'F3(z)
+print("Cambia_la_llave_k")
+print(z)
+
+print()
+
+var F4 = lambda(d) => { d = "HastaPronto"};
+'F4(w)
+print("No_cambia_W")
+print(w)
+
+print()
+
+print("lista_de_valores_cambiados")
+print([x,y,z,w])
+
+return
