@@ -1,0 +1,369 @@
+#------------PUNTO 2------------------------
+
+object vehiculo = { 
+    Marca : "Ford",
+    Cilindraje : 1200
+}
+var sustentacion2 = {"Entero": 10,
+"Flotante":10.5,
+"Complejos" : complex(10,1),
+"Nulos" : null,
+"Cadenas_de_caracteres" : "hola?",
+"BooleanosT" : true,
+"BooleanosF" : false,
+"Procedimientos" : lambda() => {"hola"},
+"Listas" : [1,true,3.5,"hola",null,complex(10,1),[1,2,3]],
+"Prototipos" : vehiculo,
+"Diccionarios" : {"DicAnidado" : ["hola","mundo"]}
+};
+
+print(sustentacion2.["Entero"])
+print(sustentacion2.["Flotante"])
+print(sustentacion2.["Complejos"])
+print(sustentacion2.["Nulos"])
+print(sustentacion2.["Cadenas_de_caracteres"])
+print(sustentacion2.["BooleanosT"])
+print(sustentacion2.["BooleanosF"])
+print(sustentacion2.["Listas"])
+print(sustentacion2.["Prototipos"])
+print(sustentacion2.["Diccionarios"])
+print(sustentacion2.["Diccionarios"].["DicAnidado"])
+
+print()
+print(sustentacion2.["Procedimientos"])
+print('sustentacion2.["Procedimientos"]())
+
+return
+
+
+#------------PUNTO 3------------------------
+
+var x = 10;
+var y = "prueba1";
+
+print("valor_original_de_x:" , x)
+print("valor_original_de_y:" , y)
+
+x = "prueba2"
+y = 20
+
+print("valor_modificado_de_x:" , x)
+print("valor_modificado_de_y:" , y)
+
+x
+
+return
+
+
+#------------PUNTO 4------------------------
+
+const x = 10;
+const y = "prueba1";
+
+print(x)
+print(y)
+
+x = "prueba2"
+y = 20
+
+return
+
+#------------PUNTO 5------------------------
+
+print("Operaciones_con_numeros_enteros")
+print()
+print((10 + 5))
+print((8 - 1))
+print((20 / 4))
+print((15 * -4))
+print((1234 % 34))
+print(++(10)) #add1
+print(--(-10)) #sub1
+print()
+
+print("Operaciones_con_numeros_flotantes")
+print()
+print((10 + 5))
+print((9.19 - 0.12))
+print((20.678 / -1000))
+print((157.43 * 3.25))
+print(++(12.332)) #add1
+print(--(-9.9570)) #sub1
+print()
+
+
+print("Operaciones_con_numeros_complejos")
+print()
+print((complex(43, 12) + complex(12,2)))
+print((complex(11.1, -10.19) - complex(0, 10000)))
+print((complex(1000, 0) * complex(12, 14)))
+print((complex(8, 0) / complex(2, 0)))
+
+return
+
+
+
+#------------PUNTO 6------------------------
+
+
+# Primitivas de comparación con enteros
+print("Comparaciones_basicas")
+print()
+print((10 < 20))      # menor que
+print((15 > 8))       # mayor que
+print((10 <= 10))     # menor o igual
+print((20 >= 15))     # mayor o igual
+print((5 == 2))       # igual a
+print((7 != 3))       # diferente de
+print()
+
+# Primitivas booleanas
+print("Operadores_booleanos_basicos")
+print()
+print((true and true))
+print((false or true))
+print(not(false))
+print()
+
+# Operadores alternativos
+print("Operadores_con_simbolos_y_xor")
+print()
+print(((10 < 20) && (5 == 5)))
+print(((10 > 20) || (7 != 3)))
+print((true xor true))
+print(((10 < 20) xor (5 > 10)))
+print()
+
+# Operadores booleanos anidados
+print("Comparaciones_dentro_de_and")
+print()
+print((((10 < 20) and (5 == 5)) or not((10 < 8))))
+print((not((15 > 8)) and (20 >= 15)))
+print()
+
+# Comparaciones mezcladas con enteros, flotantes y booleanos
+print("Comparaciones_mezcladas")
+print()
+print(((80 < 20) and (5.5 > 3.2)))
+print(((15.7 <= 15.7) or (8 != 8)))
+print((((10 + 5) == 15) && ((20.5 / 2.0) > 10.0)))
+print((((8.3 - 3.3) < 6.0) || (7 >= 7)))
+print((not((12.5 > 10)) and false))
+print((((100 % 3) == 1) xor ((9.9 + 0.1) >= 10.0)))
+print((((15 * 2) > 25) || ((8.0 / 4.0) == 2.0)))
+print((not(false) && ((10 < 20) and (5.5 != 3.2))))
+print((((7 + 3) <= 10) or ((15.5 - 5.5) > 9.0)))
+print((((20 / 4) == 5) && not((8.8 < 8.8))))
+
+return
+
+
+#------------PUNTO 7------------------------
+
+var x = "Hola", y = "Mundo";
+
+print("Demostracion_de_la_concatenacion_de_X_con_Y")
+print()
+var z = (x concat y);
+print("valor_x:", x)
+print("valor_y:", y)
+print("valor_concat_x_y:", z)
+print()
+
+print("Demostracion_de_la_funcion_length")
+print()
+print("longitud_x:" , length(x))
+print("longitud_y:", length(y))
+print("longitud_concat_x_y:", length(z))
+print()
+
+print("Ejemplos_directos_de_concat_y_length")
+print()
+print(("Hola" concat "Mundo"))
+print(length(("Hola" concat "Mundo")))
+print((("Buen" concat "os") concat "Dias"))
+print(length((("Buen" concat "os") concat "Dias")))
+print((("Feliz" concat "Super") concat "Cumpleanos"))
+print(length((("Feliz" concat "Super") concat "Cumpleanos")))
+
+return
+
+
+#------------PUNTO 8------------------------
+
+var x = [1,2,3];
+var y = 10;
+var z = { "k" : "hola"};
+var w = "Bienvenido";
+
+var F1 = lambda(a) => {a.[2] = 4};
+'F1(x)
+
+print("Cambia_la_posicion_index_de_X")
+print(x)
+
+print()
+
+var F2 = lambda(b) => {b=11};
+'F2(y)
+print("No_cambia_Y")
+print(y)
+
+print()
+
+var F3 = lambda(c) => { c.["k"] = "adios" };
+'F3(z)
+print("Cambia_la_llave_k")
+print(z)
+
+print()
+
+var F4 = lambda(d) => { d = "HastaPronto"};
+'F4(w)
+print("No_cambia_W")
+print(w)
+
+print()
+
+print("lista_de_valores_cambiados")
+print([x,y,z,w])
+
+return
+
+
+#------------PUNTO 9------------------------
+
+var factorial = lambda(n) => {
+    if (n <= 1) {
+        1
+    } else {
+        var resultado = 1;
+        while (n > 0){
+            resultado = (resultado * n)
+            n = (n - 1)
+        }
+        resultado
+    }
+};
+
+var registro = {};
+
+var registroFactorial = lambda(L) => {
+    var listaFactoriales = [];
+    for i in L {
+        listaFactoriales = (listaFactoriales append ['factorial(i)])
+    }
+    registro.["valores"] = L
+    registro.["factoriales"] = listaFactoriales
+};
+
+'registroFactorial([1,2,3,4,7,9])
+
+print(registro)
+
+print("valores:", registro.["valores"])
+print("factoriales:", registro.["factoriales"])
+
+return
+
+#------------PUNTO 10------------------------
+
+var map = lambda(f, L) => {
+    if empty?(L){
+        L
+    }else{
+        (['f(head(L))] append 'map(f,tail(L)))
+    }
+};
+
+print("lista:", [1,2,3,4,5] , "Map_multiplicar_por_2:", 'map(lambda(x) => {(x * 2)}, [1,2,3,4,5]))
+print()
+print( "lista:",  [0,1,2,3,4,5] , "map_potencias_de_2:", 'map(lambda(x) => {(x*x)}, [0,1,2,3,4,5]))
+
+return 
+
+#------------PUNTO 11------------------------
+
+#Punto 1, ciclo que itera con for y realiza el reciproco de cada elemento de una lista, creando una lista nueva con los reciprocos
+var rango = [1,2,3,4,5], acc = [], reciproco = null;
+
+print("Iteracion_con_for_haciendo_reciprocos")
+print()
+
+
+for i in rango {
+  reciproco = (1 / i)
+  print("Valor:", i, "Reciproco:", reciproco)
+  acc = (acc append [reciproco])
+}
+
+print()
+print("Resultado_de_la_lista_con_los_reciprocos")
+print(acc)
+print()
+
+return
+
+#Punto 2, ciclo que itera con while, devolviendo si la iteracion k es par o impar con la funcion esPar?
+var esPar? = lambda(n) => {
+  if ((n % 2) == 0) {
+    true
+  }else{
+    false
+  }
+};
+
+var k = 1;
+
+print("Iteracion_con_while_usando_esPar?")
+print()
+
+while (k <= 5) {
+  print("iteracion:", k, "Valor_esPar?:", 'esPar?(k))
+  k = ++(k)
+}
+
+
+return
+
+
+#------------PUNTO 12------------------------
+
+object vehiculo = {
+    Marca : "Honda",
+    Modelo : 2001,
+    setMarca : lambda(self,marca) => { self.["Marca"] = marca },
+    setModelo : lambda(self,modelo) => { self.["Modelo"] = modelo },
+    getMarca : lambda(self) => {self.["Marca"]},
+    getModelo : lambda(self) => {self.["Modelo"]}
+}
+
+object Moto = clone(vehiculo)
+Moto.["Cilindrada"] = null
+Moto.["setCilindrada"]  = lambda(self,cilindrada) => { self.["Cilindrada"]= cilindrada}
+Moto.["getCilindrada"]  = lambda(self) => { self.["Cilindrada"]}
+
+
+
+object Moto1 = clone(Moto)
+object Moto2 = clone(Moto)
+object Moto3 = clone(Moto)
+
+'Moto1.["setCilindrada"](Moto1,100)
+'Moto2.["setCilindrada"](Moto2,200)
+'Moto3.["setCilindrada"](Moto3,300)
+
+print("INFO:")
+
+print()
+print("Moto1")
+print('Moto1.["getMarca"](Moto1),'Moto1.["getModelo"](Moto1),'Moto1.["getCilindrada"](Moto1))
+
+print()
+print("Moto2")
+print('Moto2.["getMarca"](Moto2),'Moto2.["getModelo"](Moto1),'Moto2.["getCilindrada"](Moto2))
+
+print()
+print("Moto3")
+print('Moto3.["getMarca"](Moto3),'Moto3.["getModelo"](Moto1),'Moto3.["getCilindrada"](Moto3))
+return
